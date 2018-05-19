@@ -1,0 +1,16 @@
+.card{
+  margin: 10px;
+  width: 349px;
+}
+.image-size{
+  width: 349px;
+}
+.price{
+  font-size: 23px;
+  padding: 8px;
+}
+
+.buy-label{
+  font-size: 21px;
+  font-weight: 500;
+}
