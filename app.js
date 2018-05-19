@@ -1,19 +1,20 @@
-var createError = require('http-errors');
-var methodOverride = require('method-override')
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var logger = require('morgan');
-var exphbs = require('express-handlebars');
-var mongoose=require('mongoose');
-var indexRouter = require('./routes/index');
-var userRouter = require('./routes/users');
-var passport= require('passport');
-var flash = require('connect-flash');
+require('dotenv').config()
+const createError = require('http-errors');
+const methodOverride = require('method-override')
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const logger = require('morgan');
+const exphbs = require('express-handlebars');
+const mongoose=require('mongoose');
+const indexRouter = require('./routes/index');
+const userRouter = require('./routes/users');
+const passport= require('passport');
+const flash = require('connect-flash');
+const env=process.env;
 
-
-mongoose.connect('mongodb://localhost/shopping');
+mongoose.connect( env.DB_CONNECT);
 require('./config/passport');
 
 var app = express();

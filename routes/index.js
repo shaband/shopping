@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var _=require('lodash');
 
-var csurf = require('csurf')
+var csurf = require('csurf');
 var csrfProtection = csurf();
 
 var Product=require('../models/Product');
