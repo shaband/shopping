@@ -27,11 +27,9 @@ passport.use('local.signup',
             'email': req.body.email
         }, (err, user) => {
             if (err) {
-                console.log(err);
                 return done(error);
             }
             if (user) {
-                console.log(user);
                 return done(null, false, {
                     message: 'User already exists'
                 });

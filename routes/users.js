@@ -5,10 +5,11 @@ var csrfProtection = csurf();
 var passport= require('passport');
 router.use(csrfProtection);
 /* GET users listing. */
-router.get('/signUp', function(req, res, next) { 
+router.get('/signUp', function(req, res, next) {
+     
     var messages=req.flash('error');
-
     var hasErrors=messages.length>0;
+    console.log(messages);
 return res.render('users/signUp',{csrfToken:req.csrfToken(),messages,hasErrors})
 });
 
