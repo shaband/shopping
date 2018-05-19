@@ -16,6 +16,7 @@
     "express": "~4.16.0",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "express-validator": "^5.2.0",
     "faker": "^4.1.0",
     "flash": "^1.1.0",
     "hbs": "~4.0.1",

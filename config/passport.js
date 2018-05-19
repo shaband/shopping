@@ -2,6 +2,8 @@ const passport = require('passport');
 const User = require('../models/User');
 const localStrategy = require('passport-local').Strategy;
 const bycrpt = require('bcrypt');
+const { check, validationResult } = require('express-validator/check');
+
 
 passport.serializeUser(function (user, done) {
     done(null, user.id);
