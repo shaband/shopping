@@ -25,6 +25,15 @@ passport.use('local.signup',
     }, (req, email, password, done) => {
         var request = req.body;
 
+        let hasErrors=messages.length>0;
+        // if(!errors.isEmpty()){
+           
+    
+        //     messages.push(errors.msg);
+        // }
+        console.log(errors.isEmpty());
+        console.log(errors.array());
+        console.log('eaaa');
         User.findOne({
             'email': req.body.email
         }, (err, user) => {

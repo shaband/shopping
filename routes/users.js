@@ -14,14 +14,7 @@ router.get('/signUp', function(req, res, next) {
     let errors = validationResult(req);
     let messages=req.flash('error');
     let hasErrors=messages.length>0;
-    if(!errors.isEmpty()){
-       
-
-        messages.push(errors.msg);
-    }
-    console.log(errors.isEmpty());
-    console.log(errors.array());
-    console.log('eaaa');
+    
 
 return res.render('users/signUp',{csrfToken:req.csrfToken(),messages,hasErrors})
 });
