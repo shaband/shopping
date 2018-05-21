@@ -7,14 +7,11 @@ const { check, validationResult } = require("express-validator/check");
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
+
 passport.deserializeUser(function(id, done) {
-  User.findOne({
-    id
-  })
-    .then(data => {
-      done(null, data);
-    })
-    .catch(error => done(error, null));
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
 });
 passport.use(
   "local.signup",
@@ -74,7 +71,6 @@ passport.use(
       passReqToCallback: true
     },
     (req, email, password, done) => {
-
       var request = req.body;
       User.findOne(
         {
@@ -89,10 +85,11 @@ passport.use(
               message: "email not exists"
             });
           }
-        
+
           if (!bycrpt.compareSync(request.password, user.password)) {
             return done(null, false, { message: "Wrong Password" });
           }
+
           return done(null, user);
         }
       );

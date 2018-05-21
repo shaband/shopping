@@ -5,11 +5,12 @@ const csrfProtection = csurf();
 const passport = require("passport");
 const { check, validationResult } = require("express-validator/check");
 const { rules } = require("../validation/userRules");
+const { auth, unauth } = require("../middleware/middleware");
 
 router.use(csrfProtection);
 
 /* GET users listing. */
-router.get("/signUp", function(req, res, next) {
+router.get("/signUp", unauth, function(req, res, next) {
   // Finds the validation errors in this request and wraps them in an object with handy functions
   let errors = validationResult(req);
   let messages = req.flash("error");
@@ -32,7 +33,7 @@ router.post(
   })
 );
 
-router.get("/signin", (req, res, done) => {
+router.get("/signin", unauth, (req, res, done) => {
   res.render("users/signIn", { csrfToken: req.csrfToken() });
 });
 
@@ -45,7 +46,12 @@ router.post(
   })
 );
 
-router.get("/profile", (req, res, done) => {
+router.get("/profile", auth, (req, res, done) => {
   res.render("users/profile");
+});
+
+router.get("/logout", auth, (req, res, done) => {
+  req.logout();
+  return res.redirect("/");
 });
 module.exports = router;

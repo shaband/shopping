@@ -32,9 +32,13 @@
                     <i class="fa fa-user"></i> user Account
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">profile</a>
-                    <a class="dropdown-item" href="#">logout</a>
-                    {{!--
+                    {{#if login}}
+                    <a class="dropdown-item" href="/user/profile">profile</a>
+                    <a class="dropdown-item" href="/user/logout">logout</a>
+                    {{else}}
+                    <a class="dropdown-item" href="/user/signin">Sign in</a>
+                    <a class="dropdown-item" href="/user/signUp">Sign Up</a>
+                    {{/if}} {{!--
                     <a class="dropdown-item" href="#">Something else here</a> --}}
                 </div>
             </li>
