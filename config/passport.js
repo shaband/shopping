@@ -73,15 +73,8 @@ passport.use(
       passwordField: "password",
       passReqToCallback: true
     },
-    (email, password, req, done) => {
-      let errors = validationResult(req);
-      let messages = [];
-      errors.array().forEach(val => {
-        messages.push(val.param + " : " + val.msg);
-      });
-      if (!errors.isEmpty()) {
-        return done(null, false, req.flash("error", messages));
-      }
+    (req, email, password, done) => {
+
       var request = req.body;
       User.findOne(
         {
@@ -96,7 +89,8 @@ passport.use(
               message: "email not exists"
             });
           }
-          if (!bycrpt.compareSync(request.password, user.passport)) {
+        
+          if (!bycrpt.compareSync(request.password, user.password)) {
             return done(null, false, { message: "Wrong Password" });
           }
           return done(null, user);
