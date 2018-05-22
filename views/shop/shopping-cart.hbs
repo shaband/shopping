@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+        <ul class="list-group">
+            {{#each cart}}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong> {{this.item.title}} </strong>
+                <span class="badge badge-success">{{this.price}}</span>
+                <div class="dropdown">
+                    <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+action                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">remove one</a>
+                        <a class="dropdown-item" href="#">remove all</a>
+                    </div>
+                </div>
+
+                <span class="badge badge-primary badge-pill">{{this.quantity}}</span>
+            </li>
+            {{!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong> Dapibus ac facilisis in </strong>
+                                <span class="badge badge-success">14 $</span>
+                <div class="dropdown">
+                    <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+action                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">remove one</a>
+                        <a class="dropdown-item" href="#">remove all</a>
+                    </div>
+                </div>
+                <span class="badge badge-primary badge-pill">2</span>
+            </li> --}}
+            {{!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong> Morbi leo risus </strong>
+                <span class="badge badge-success">14 $</span>
+                <div class="dropdown">
+                    <button class="btn btn-warning btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+action                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">remove one</a>
+                        <a class="dropdown-item" href="#">remove all</a>
+                    </div>
+                </div>
+
+                <span class="badge badge-primary badge-pill">1</span>
+            </li> --}}
+        </ul>
+    </div>
+</div>

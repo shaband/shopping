@@ -25,7 +25,10 @@
         <ul class="navbar-nav ">
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-cart-plus"></i> shop Cart</a>
+
+                    <i class="fas fa-cart-plus"></i> shop Cart
+                    <span class="badge badge-pill badge-secondary">{{session.cart.totalQuantity}}</span>
+                </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
