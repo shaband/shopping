@@ -14,7 +14,9 @@ const indexRouter = require("./routes/index");
 const userRouter = require("./routes/users");
 const passport = require("passport");
 const flash = require("connect-flash");
-const {checkAuth}=require('./middleware/middleware');
+const MongoStore = require("connect-mongo")(session);
+
+const { checkAuth } = require("./middleware/middleware");
 
 const env = process.env;
 
@@ -49,9 +51,16 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: "motherFucker",
+    secret: env.APP_KEY || "secret",
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({ 
+      mongooseConnection: mongoose.connection,
+      ttl: 14 * 24 * 60 * 60 // = 14 days. Default
+ }),
+ cookie:{
+   maxAge:180 * 60 * 1000
+ }
   })
 );
 app.use(passport.initialize());
