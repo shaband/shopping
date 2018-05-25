@@ -15,6 +15,7 @@ module.exports = function(oldCart) {
   this.toArray = () => {
     let arr = [];
     for (let id in this.items) {
+     // console.log(this.items[id].item);
       arr.push(this.items[id]);
     }
     return arr;
