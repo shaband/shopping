@@ -15,6 +15,7 @@ const userRouter = require("./routes/users");
 const passport = require("passport");
 const flash = require("connect-flash");
 const MongoStore = require("connect-mongo")(session);
+var helpers = require("handlebars-helpers")();
 
 const { checkAuth } = require("./middleware/middleware");
 
@@ -31,7 +32,8 @@ app.engine(
   ".hbs",
   exphbs({
     defaultLayout: "layout",
-    extname: ".hbs"
+    extname: ".hbs",
+    helpers: helpers
   })
 );
 

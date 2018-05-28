@@ -1,9 +1,9 @@
-Stripe.setPublishableKey("pk_test_a5SodfxUKLp2w7XIqKgy50AL");
+Stripe.setPublishableKey("pk_test_ZkypOSVpDtNoNIBjSoNrcpEu");
 
 var $form = $("#checkout-form");
 
 $form.submit(function(event) {
-  $("#charge-error").addClass("hidden");
+  $("#charge-error").addClass("d-none");
   $form.find("button").prop("disabled", true);
   Stripe.card.createToken(
     {
@@ -24,7 +24,7 @@ function stripeResponseHandler(status, response) {
 
     // Show the errors on the form
     $("#charge-error").text(response.error.message);
-    $("#charge-error").removeClass("hidden");
+    $("#charge-error").removeClass("d-none");
     $form.find("button").prop("disabled", false); // Re-enable submission
   } else {
     // Token was created!
