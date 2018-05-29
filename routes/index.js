@@ -47,12 +47,40 @@ router.get("/add-to-cart/:id", (req, res) => {
 });
 router.get("/shopping-cart", (req, res) => {
   if (!req.session.cart) {
-    return res.redirect("/shopping-cart");
+    return res.redirect("/");
   }
   let cart = new Cart(req.session.cart || {});
   return res.render("shop/shopping-cart", {
     cart
   });
+});
+router.get("/remove-one/:id", (req, res) => {
+  if (!req.session.cart) {
+    return res.redirect("/");
+  }
+  let id = req.params.id;
+  let cart = new Cart(req.session.cart);
+  cart.reduceByOne(id);
+  if (cart.totalQuantity <= 0) {
+    req.session.cart = undefined;
+  } else {
+    req.session.cart = cart;
+  }
+  return res.redirect("/shopping-cart");
+});
+router.get("/remove-all/:id", (req, res) => {
+  if (!req.session.cart) {
+    return res.redirect("/");
+  }
+  let id = req.params.id;
+  let cart = new Cart(req.session.cart);
+  cart.removeAll(id);
+  if (cart.totalQuantity <= 0) {
+    req.session.cart = undefined;
+  } else {
+    req.session.cart = cart;
+  }
+  return res.redirect("/shopping-cart");
 });
 router.get("/checkout", auth, (req, res) => {
   // return res.send("aaa");

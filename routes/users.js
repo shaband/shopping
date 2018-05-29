@@ -72,7 +72,6 @@ router.get("/profile", auth, (req, res, done) => {
 
   let orders = Order.find({ user: req.user });
   orders.then(data => {
-    console.log(data);
     res.render("users/profile", { orders: data });
   });
   orders.catch(err => {
