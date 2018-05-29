@@ -1,1 +1,35 @@
 <h1>user Profile</h1>
+
+<div class="row col-md-8 offset-md-2">
+    {{#each orders}}
+
+    <div class="card text-center" style="width:100%">
+        <div class="card-header">
+            <h4>Name: {{name}} </h4>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">payment id : {{payment_id}}</h5>
+            {{!--
+            <p class="card-text"> Quantity:{{cart.totalQuantity}}</p>--}}
+            <p class="card-text">
+                <h6> ITEMS</h6>
+                <ul class="list-group">
+
+                    {{#each cart.items}}
+                    <li type="button" class="list-group-item list-group-item-action ">
+                        <strong> {{item.title}}</strong>
+                        <span class="badge badge-success">{{this.price}} $</span>
+
+                        <span class="badge badge-primary badge-pill float-right">{{quantity}}</span>
+
+                    </li>
+                    {{/each}}
+                </ul>
+            </p>
+        </div>
+        <div class="card-footer text-muted">
+            <strong> Total Price: {{cart.totalPrice}}$ </strong>
+        </div>
+    </div>
+    {{/each}}
+</div>

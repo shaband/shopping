@@ -13,6 +13,9 @@ const stripe = require("stripe")("sk_test_NHxNTymzPcy5LhdgB01vgklv");
 const Product = require("../models/Product");
 const Cart = require("../models/Cart");
 const Order = require("../models/Order");
+//middleware
+
+const { auth, unauth } = require("../middleware/middleware");
 // end models
 router.use(csrfProtection);
 
@@ -51,7 +54,7 @@ router.get("/shopping-cart", (req, res) => {
     cart
   });
 });
-router.get("/checkout", (req, res) => {
+router.get("/checkout", auth, (req, res) => {
   // return res.send("aaa");
   let cart = new Cart(req.session.cart || {});
   let errMsg = req.flash("error")[0];
@@ -63,7 +66,8 @@ router.get("/checkout", (req, res) => {
     noErrors: !errMsg
   });
 });
-router.post("/checkout", (req, res) => {
+router.post("/checkout", auth, (req, res) => {
+  //  return res.send(req.user);
   // return res.send("aaa");
   if (!req.session.cart) {
     return res.redirect("/shopping-cart");

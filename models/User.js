@@ -1,9 +1,6 @@
 const mongoose =require('mongoose');
 const Schema =mongoose.Schema;
 const bycrpt= require('bcrypt');
-const passportLocalMongoose = require('passport-local-mongoose');
-
-
 
 const user=new Schema({
     name:{type:String,required:true},
